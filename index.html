@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Help Nah Man connects Trinidad and Tobago with charities, community events, volunteer opportunities and donation drives."
+    />
+    <meta name="theme-color" content="#153f33" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Help Nah Man — Community help starts here" />
+    <meta property="og:description" content="Find ways to volunteer, attend and give across Trinidad and Tobago." />
+    <meta property="og:image" content="/og.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Help Nah Man — Community help starts here" />
+    <meta name="twitter:description" content="Find ways to volunteer, attend and give across Trinidad and Tobago." />
+    <meta name="twitter:image" content="/og.jpg" />
+    <title>Help Nah Man — Community help starts here</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600;6..72,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="utility-bar">
+        <p><span class="live-dot" aria-hidden="true"></span> Community notices updated daily</p>
+        <p id="todayDate"></p>
+      </div>
+
+      <div class="masthead">
+        <a class="brand" href="#top" aria-label="Help Nah Man home">
+          <span class="brand-mark" aria-hidden="true">H!</span>
+          <span>
+            <strong>Help Nah Man</strong>
+            <small>Community help starts here</small>
+          </span>
+        </a>
+
+        <nav class="main-nav" aria-label="Main navigation">
+          <a class="active" href="#latest">Latest</a>
+          <a href="#latest" data-nav-filter="Volunteer">Volunteer</a>
+          <a href="#latest" data-nav-filter="Donation">Donate</a>
+          <a href="#about">About</a>
+        </nav>
+
+        <button class="button button-dark" id="openComposer" type="button">
+          <span aria-hidden="true">＋</span> Post a notice
+        </button>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero wrap" aria-labelledby="heroTitle">
+        <div class="hero-copy">
+          <p class="kicker">The community noticeboard</p>
+          <h1 id="heroTitle">See who needs a hand. <em>Then lend yours.</em></h1>
+          <p class="hero-intro">
+            Discover real ways to volunteer, attend and give across Trinidad and Tobago — all in one trusted place.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-coral" href="#latest">Find a way to help <span aria-hidden="true">→</span></a>
+            <button class="text-button" id="heroPost" type="button">Share a community need</button>
+          </div>
+        </div>
+
+        <article class="lead-story" id="leadStory" aria-label="Featured community notice"></article>
+      </section>
+
+      <section class="impact-strip" aria-label="Community impact">
+        <div class="wrap impact-grid">
+          <p><strong id="totalNotices">0</strong><span>active notices</span></p>
+          <p><strong id="peopleNeeded">0</strong><span>people still needed</span></p>
+          <p><strong id="communitiesCount">0</strong><span>communities represented</span></p>
+          <blockquote>“Small acts, when multiplied, can transform a whole community.”</blockquote>
+        </div>
+      </section>
+
+      <section class="feed-section wrap" id="latest" aria-labelledby="latestTitle">
+        <div class="section-heading">
+          <div>
+            <p class="kicker">What’s happening now</p>
+            <h2 id="latestTitle">Latest from the community</h2>
+          </div>
+          <p id="resultCount" class="result-count">0 notices</p>
+        </div>
+
+        <div class="discovery-bar" aria-label="Filter community notices">
+          <label class="search-field">
+            <span class="sr-only">Search notices</span>
+            <span aria-hidden="true">⌕</span>
+            <input id="searchInput" type="search" placeholder="Search cause, place or organisation" autocomplete="off" />
+          </label>
+          <div class="filter-chips" id="typeFilters" aria-label="Filter by notice type">
+            <button class="filter-chip active" type="button" data-filter="All" aria-pressed="true">All</button>
+            <button class="filter-chip" type="button" data-filter="Volunteer" aria-pressed="false">Volunteer</button>
+            <button class="filter-chip" type="button" data-filter="Event" aria-pressed="false">Events</button>
+            <button class="filter-chip" type="button" data-filter="Donation" aria-pressed="false">Donation drives</button>
+          </div>
+          <label class="sort-field">
+            <span class="sr-only">Sort notices</span>
+            <select id="sortFilter">
+              <option value="soonest">Happening soon</option>
+              <option value="newest">Recently posted</option>
+              <option value="needed">Most help needed</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="feed-layout">
+          <div id="eventList" class="story-list" aria-live="polite"></div>
+
+          <aside class="feed-aside">
+            <article class="aside-card how-card">
+              <p class="kicker">New here?</p>
+              <h3>Three ways to show up</h3>
+              <ol>
+                <li><span>01</span><div><strong>Give time</strong><small>Join a volunteer team</small></div></li>
+                <li><span>02</span><div><strong>Give support</strong><small>Attend a community event</small></div></li>
+                <li><span>03</span><div><strong>Give resources</strong><small>Donate money or supplies</small></div></li>
+              </ol>
+            </article>
+
+            <article class="aside-card bulletin-card" id="about">
+              <span class="bulletin-icon" aria-hidden="true">✦</span>
+              <p class="kicker">Good to know</p>
+              <h3>Every post is a starting point.</h3>
+              <p>Contact the listed organisation to confirm details before donating or attending.</p>
+            </article>
+
+            <button class="post-prompt" id="asidePost" type="button">
+              <span>Are you a charity or community organiser?</span>
+              <strong>Post your notice free <span aria-hidden="true">→</span></strong>
+            </button>
+          </aside>
+        </div>
+      </section>
+
+      <section class="newsletter">
+        <div class="wrap newsletter-inner">
+          <div>
+            <p class="kicker">Stay in the loop</p>
+            <h2>Good news, useful news — straight to you.</h2>
+          </div>
+          <form id="newsletterForm" class="newsletter-form">
+            <label class="sr-only" for="newsletterEmail">Email address</label>
+            <input id="newsletterEmail" type="email" required placeholder="Your email address" />
+            <button class="button button-coral" type="submit">Keep me informed</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <a class="brand brand-light" href="#top">
+          <span class="brand-mark" aria-hidden="true">H!</span>
+          <span><strong>Help Nah Man</strong><small>For we, by we.</small></span>
+        </a>
+        <p>A community-powered noticeboard for Trinidad &amp; Tobago.</p>
+        <div class="footer-links"><a href="#latest">Browse</a><button id="footerPost" type="button">Post a notice</button><a href="#about">Safety</a></div>
+      </div>
+    </footer>
+
+    <dialog id="composerDialog" class="modal composer">
+      <form method="dialog" id="eventForm">
+        <div class="modal-heading">
+          <div>
+            <p class="kicker">Community submission</p>
+            <h2>Post a notice</h2>
+            <p>Tell the community what you need and how they can help.</p>
+          </div>
+          <button class="close-button" value="cancel" aria-label="Close form" type="submit">×</button>
+        </div>
+
+        <div class="form-grid">
+          <label><span>Notice type</span><select name="type" required><option>Volunteer</option><option>Event</option><option>Donation</option></select></label>
+          <label><span>Cause</span><select name="cause" required><option>Community care</option><option>Environment</option><option>Food support</option><option>Education</option><option>Health</option><option>Youth</option><option>Animals</option></select></label>
+          <label class="span-2"><span>Headline</span><input name="title" required maxlength="90" placeholder="What does the community need to know?" /></label>
+          <label><span>Organisation or group</span><input name="organization" required maxlength="70" placeholder="Your organisation" /></label>
+          <label><span>Area</span><input name="location" required maxlength="80" placeholder="e.g. Arima" /></label>
+          <label><span>Date</span><input name="date" type="date" required /></label>
+          <label><span>Time</span><input name="time" type="time" required /></label>
+          <label><span>People / contributions needed</span><input name="capacity" type="number" min="1" max="10000" required placeholder="25" /></label>
+          <label><span>Contact or sign-up link</span><input name="contact" required maxlength="140" placeholder="Email, phone or website" /></label>
+          <label class="span-2"><span>What’s happening?</span><textarea name="description" rows="4" maxlength="300" required placeholder="Explain the need, what to expect and anything people should bring."></textarea></label>
+        </div>
+
+        <label class="form-check"><input name="verified" type="checkbox" required /><span>I confirm these details are accurate and I am authorised to post them.</span></label>
+        <div class="modal-actions">
+          <button class="button button-ghost" value="cancel" type="submit">Cancel</button>
+          <button class="button button-dark" value="publish" type="submit">Publish notice</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="actionDialog" class="modal action-modal">
+      <form method="dialog" id="actionForm">
+        <button class="close-button action-close" value="cancel" aria-label="Close" type="submit">×</button>
+        <div id="actionContent"></div>
+      </form>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="./app.js"></script>
+  </body>
+</html>

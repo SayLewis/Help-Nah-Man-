@@ -1,0 +1,9 @@
+{
+  "name": "help-nah-man",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.cjs",
+    "start": "node server.cjs"
+  }
+}
