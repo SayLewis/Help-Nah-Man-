@@ -23,7 +23,7 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600;6..72,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=20260918-mobile-3" />
   </head>
   <body>
     <header class="site-header">
@@ -86,7 +86,7 @@
             <p class="kicker">What’s happening now</p>
             <h2 id="latestTitle">Latest from the community</h2>
           </div>
-          <p id="resultCount" class="result-count">0 notices</p>
+          <p id="resultCount" class="result-count" aria-live="polite" aria-atomic="true">0 notices</p>
         </div>
 
         <div class="discovery-bar" aria-label="Filter community notices">
@@ -95,7 +95,7 @@
             <span aria-hidden="true">⌕</span>
             <input id="searchInput" type="search" placeholder="Search cause, place or organisation" autocomplete="off" />
           </label>
-          <div class="filter-chips" id="typeFilters" aria-label="Filter by notice type">
+          <div class="filter-chips" id="typeFilters" role="group" aria-label="Filter by notice type">
             <button class="filter-chip active" type="button" data-filter="All" aria-pressed="true">All</button>
             <button class="filter-chip" type="button" data-filter="Volunteer" aria-pressed="false">Volunteer</button>
             <button class="filter-chip" type="button" data-filter="Event" aria-pressed="false">Events</button>
@@ -112,7 +112,7 @@
         </div>
 
         <div class="feed-layout">
-          <div id="eventList" class="story-list" aria-live="polite"></div>
+          <div id="eventList" class="story-list" role="region" aria-label="Community notices"></div>
 
           <aside class="feed-aside">
             <article class="aside-card how-card">
@@ -173,6 +173,7 @@
             <p class="kicker">Community submission</p>
             <h2>Post a notice</h2>
             <p>Tell the community what you need and how they can help.</p>
+            <p class="prototype-note">Prototype mode: submissions stay on this device until shared publishing is connected.</p>
           </div>
           <button class="close-button" value="cancel" aria-label="Close form" type="submit">×</button>
         </div>
@@ -193,7 +194,7 @@
         <label class="form-check"><input name="verified" type="checkbox" required /><span>I confirm these details are accurate and I am authorised to post them.</span></label>
         <div class="modal-actions">
           <button class="button button-ghost" value="cancel" type="submit">Cancel</button>
-          <button class="button button-dark" value="publish" type="submit">Publish notice</button>
+          <button class="button button-dark" value="publish" type="submit">Save notice</button>
         </div>
       </form>
     </dialog>
@@ -206,6 +207,6 @@
     </dialog>
 
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
-    <script src="./app.js"></script>
+    <script src="./app.js?v=20260918-mobile"></script>
   </body>
 </html>

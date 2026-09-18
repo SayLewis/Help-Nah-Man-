@@ -68,6 +68,7 @@ struct DiscoverView: View {
                 .foregroundStyle(isSelected ? Color.white : theme.ink)
                 .padding(.horizontal, 12)
                 .padding(.vertical, 9)
+                .frame(minHeight: 44)
                 .background(isSelected ? theme.forest : theme.cream, in: Capsule())
                 .overlay(Capsule().stroke(theme.ink.opacity(isSelected ? 0 : 0.1)))
         }

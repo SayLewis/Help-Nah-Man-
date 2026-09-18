@@ -18,7 +18,7 @@ struct AboutView: View {
                 }
 
                 Text("A community-powered noticeboard for Trinidad & Tobago.")
-                    .font(.system(size: 39, weight: .bold, design: .serif))
+                    .font(.system(.largeTitle, design: .serif, weight: .bold))
                     .foregroundStyle(theme.forest)
 
                 Text("We make it easier to discover real ways to volunteer, attend and give — without having to search through scattered posts and group chats.")
@@ -64,6 +64,8 @@ struct AboutView: View {
             }
             .padding(20)
             .padding(.bottom, 28)
+            .frame(maxWidth: 680, alignment: .leading)
+            .frame(maxWidth: .infinity, alignment: .center)
         }
         .background(theme.paper)
         .navigationTitle("About")

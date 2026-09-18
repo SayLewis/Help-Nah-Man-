@@ -16,6 +16,8 @@ struct HomeView: View {
             }
             .padding(.horizontal, 18)
             .padding(.bottom, 36)
+            .frame(maxWidth: 680, alignment: .leading)
+            .frame(maxWidth: .infinity, alignment: .center)
         }
         .background(theme.paper)
         .navigationBarTitleDisplayMode(.inline)
@@ -135,6 +137,7 @@ struct HomeView: View {
                                 .foregroundStyle(theme.ink)
                                 .padding(.horizontal, 15)
                                 .padding(.vertical, 12)
+                                .frame(minHeight: 44)
                                 .background(theme.cream, in: Capsule())
                                 .overlay(Capsule().stroke(theme.ink.opacity(0.1)))
                         }
@@ -159,6 +162,7 @@ struct HomeView: View {
                     Spacer()
                     Button("See all") { router.openDiscover(kind: nil) }
                         .font(.caption.weight(.bold))
+                        .frame(minWidth: 44, minHeight: 44)
                 }
 
                 ForEach(store.notices.prefix(3)) { notice in

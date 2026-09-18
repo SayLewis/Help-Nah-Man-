@@ -15,7 +15,7 @@ Native SwiftUI companion app for the Help Nah Man community noticeboard.
 3. In Signing & Capabilities, choose your Apple development team if Xcode requests it.
 4. Build and run.
 
-The first version is offline-first. Notices, bookmarks and participation counts are stored in `UserDefaults` on the device.
+This is an offline-first prototype. Notices, bookmarks and participation counts are stored in `UserDefaults` on the device; they are not shared with other people or organizations, and no organizer notification is sent. A real launch needs a shared, moderated backend and verified donation/participation workflow.
 
 ## App Intents
 
@@ -23,7 +23,7 @@ The app exposes three actions through Siri, Spotlight and Shortcuts:
 
 - **Find ways to help** — opens Discover with an optional volunteer, event or donation filter.
 - **Post a community notice** — opens the native notice composer with a preselected type.
-- **Support an opportunity** — registers interest inline using a queryable `OpportunityEntity`.
+- **Support an opportunity** — records interest on this device using a queryable `OpportunityEntity`; it does not contact the organizer.
 
 Test them after launching the app once: open Shortcuts, create a shortcut, choose Apps, then choose Help Nah Man.
 

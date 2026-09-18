@@ -64,7 +64,7 @@ struct NoticeCard: View {
                 Label(notice.location, systemImage: "mappin.and.ellipse")
                     .font(.caption)
                     .foregroundStyle(theme.muted)
-                    .lineLimit(1)
+                    .lineLimit(2)
 
                 VStack(alignment: .leading, spacing: 7) {
                     ProgressView(value: notice.progress)
@@ -83,7 +83,7 @@ struct NoticeCard: View {
             }
         }
         .buttonStyle(.plain)
-        .accessibilityLabel("\(notice.kind.rawValue): \(notice.title), by \(notice.organization), \(notice.remaining) still needed")
+        .accessibilityLabel("\(notice.kind.rawValue): \(notice.title), by \(notice.organization), \(notice.date.formatted(date: .abbreviated, time: .shortened)), at \(notice.location), \(notice.remaining) still needed")
     }
 }
 

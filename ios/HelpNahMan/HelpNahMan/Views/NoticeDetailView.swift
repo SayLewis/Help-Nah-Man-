@@ -1,3 +1,4 @@
+import Foundation
 import SwiftUI
 
 struct NoticeDetailView: View {
@@ -19,6 +20,8 @@ struct NoticeDetailView: View {
                     }
                     .padding(18)
                     .padding(.bottom, 100)
+                    .frame(maxWidth: 680, alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: .center)
                 }
                 .safeAreaInset(edge: .bottom) {
                     actionBar(for: notice)
@@ -45,7 +48,7 @@ struct NoticeDetailView: View {
         VStack(alignment: .leading, spacing: 14) {
             KindPill(kind: notice.kind)
             Text(notice.title)
-                .font(.system(size: 40, weight: .bold, design: .serif))
+                .font(.system(.largeTitle, design: .serif, weight: .bold))
                 .foregroundStyle(theme.ink)
             Text("By \(notice.organization)")
                 .font(.subheadline.weight(.bold))
@@ -56,7 +59,10 @@ struct NoticeDetailView: View {
     private func details(for notice: CommunityNotice) -> some View {
         VStack(alignment: .leading, spacing: 18) {
             detailRow(icon: "calendar", title: "When", value: notice.date.formatted(date: .abbreviated, time: .shortened))
-            detailRow(icon: "mappin.and.ellipse", title: "Where", value: notice.location)
+            Link(destination: mapsURL(for: notice.location)) {
+                detailRow(icon: "mappin.and.ellipse", title: "Where", value: notice.location)
+            }
+            .accessibilityHint("Opens Maps")
             detailRow(icon: "heart.text.square", title: "Cause", value: notice.cause)
 
             Divider()
@@ -157,13 +163,15 @@ struct ParticipationView: View {
                             Text(notice.title)
                                 .font(.title3.weight(.semibold))
                                 .foregroundStyle(theme.muted)
-                            Label(notice.contact, systemImage: "person.crop.circle.badge.checkmark")
-                                .font(.subheadline.weight(.semibold))
-                                .foregroundStyle(theme.forest)
-                                .padding(16)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .background(theme.mint, in: RoundedRectangle(cornerRadius: 14))
-                            Text("We’ll record your interest on this device. Contact the organizer above to confirm arrangements.")
+                            if let url = contactURL(for: notice.contact) {
+                                Link(destination: url) {
+                                    organizerContact(notice.contact)
+                                }
+                                .accessibilityHint("Contacts the organizer")
+                            } else {
+                                organizerContact(notice.contact)
+                            }
+                            Text("We’ll record your interest on this device only. Contact the organizer above to confirm arrangements.")
                                 .font(.footnote)
                                 .foregroundStyle(theme.muted)
                             Button {
@@ -195,4 +203,33 @@ struct ParticipationView: View {
             }
         }
     }
+
+    private func organizerContact(_ contact: String) -> some View {
+        Label(contact, systemImage: "person.crop.circle.badge.checkmark")
+            .font(.subheadline.weight(.semibold))
+            .foregroundStyle(theme.forest)
+            .padding(16)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(theme.mint, in: RoundedRectangle(cornerRadius: 14))
+    }
+}
+
+private func mapsURL(for location: String) -> URL {
+    var components = URLComponents()
+    components.scheme = "https"
+    components.host = "maps.apple.com"
+    components.queryItems = [URLQueryItem(name: "q", value: location)]
+    return components.url!
+}
+
+private func contactURL(for contact: String) -> URL? {
+    let value = contact.trimmingCharacters(in: .whitespacesAndNewlines)
+    if let url = URL(string: value), url.scheme != nil {
+        return url
+    }
+    if value.contains("@") {
+        return URL(string: "mailto:\(value.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? value)")
+    }
+    let phone = value.filter { $0.isNumber || $0 == "+" }
+    return phone.count >= 7 ? URL(string: "tel:\(phone)") : nil
 }

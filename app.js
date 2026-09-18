@@ -148,7 +148,7 @@ elements.eventForm.addEventListener("submit", (event) => {
   elements.composerDialog.close();
   setFilter("All");
   render();
-  showToast("Your community notice is now live.");
+  showToast("Your community notice was saved on this device.");
   document.querySelector("#latest").scrollIntoView({ behavior: "smooth" });
 });
 
@@ -244,7 +244,7 @@ function storyCard(notice) {
           <span>◷ ${formatLongDate(notice.date)}</span>
         </div>
         <div class="progress-wrap">
-          <div class="progress-track" aria-label="${progress}% of support pledged"><span style="width:${progress}%"></span></div>
+          <div class="progress-track" role="progressbar" aria-label="Community support pledged" aria-valuemin="0" aria-valuemax="${notice.capacity}" aria-valuenow="${notice.joined}" aria-valuetext="${notice.joined} of ${notice.capacity} pledged"><span style="width:${progress}%"></span></div>
           <small>${openings} still needed</small>
         </div>
         <div class="story-actions">
@@ -278,7 +278,7 @@ function openAction(id) {
       <div><small>Where</small><strong>${escapeHtml(notice.location)}</strong></div>
     </div>
     <p class="action-copy">${escapeHtml(notice.description)}</p>
-    <p class="action-contact"><strong>Next step:</strong> We’ll note your interest here. Please contact <strong>${escapeHtml(notice.contact)}</strong> to confirm the details.</p>
+    <p class="action-contact"><strong>Next step:</strong> Your interest is saved on this device only. Please contact <strong>${escapeHtml(notice.contact)}</strong> to confirm the details.</p>
     <button class="button button-coral action-confirm" type="submit" value="confirm" ${openings === 0 ? "disabled" : ""}>${openings === 0 ? "This goal has been reached" : confirmLabel(notice.type)}</button>
   `;
   elements.actionDialog.showModal();
@@ -329,7 +329,7 @@ function confirmLabel(type) {
   return type === "Donation" ? "Pledge a contribution" : type === "Event" ? "Count me in" : "Volunteer for this";
 }
 function actionSuccessMessage(type) {
-  return type === "Donation" ? "Contribution pledged — thank you for giving." : type === "Event" ? "You’re on the list — see you there." : "Your hand is up — thanks for volunteering.";
+  return type === "Donation" ? "Your contribution interest was saved on this device." : type === "Event" ? "Your attendance interest was saved on this device." : "Your volunteer interest was saved on this device.";
 }
 function openingsFor(notice) { return Math.max(notice.capacity - notice.joined, 0); }
 function dateTimeFor(notice) { return new Date(`${notice.date}T${notice.time || "00:00"}`).getTime(); }

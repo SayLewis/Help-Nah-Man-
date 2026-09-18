@@ -1,2 +1,9 @@
 dist/
 help-nah-man-site.tar.gz
+DerivedData/
+build/
+xcuserdata/
+*.xcuserstate
+*.xcarchive
+*.dSYM
+*.ipa

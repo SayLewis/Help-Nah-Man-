@@ -10,7 +10,8 @@ final class AppTheme {
     let muted = Color(red: 0.36, green: 0.42, blue: 0.39)
     let forest = Color(red: 0.082, green: 0.247, blue: 0.20)
     let forestSoft = Color(red: 0.14, green: 0.36, blue: 0.29)
-    let coral = Color(red: 0.933, green: 0.408, blue: 0.31)
+    // #B9412F keeps white CTA labels above the WCAG AA 4.5:1 contrast threshold.
+    let coral = Color(red: 0.725, green: 0.255, blue: 0.184)
     let gold = Color(red: 0.941, green: 0.788, blue: 0.365)
     let mint = Color(red: 0.863, green: 0.922, blue: 0.867)
 
