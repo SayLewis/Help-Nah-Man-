@@ -1,5 +1,7 @@
 dist/
 help-nah-man-site.tar.gz
+public/
+.vercel/
 DerivedData/
 build/
 xcuserdata/
